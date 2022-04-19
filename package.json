@@ -1,6 +1,6 @@
 {
   "name": "@3c1u/classes",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Simple classname utility for whitespace sanitizing and conditional rendering.",
   "main": "dist/index.js",
   "repository": "https://github.com/3c1u/classes.git",
