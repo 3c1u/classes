@@ -3,6 +3,7 @@
   "version": "1.0.1",
   "description": "Simple classname utility for whitespace sanitizing and conditional rendering.",
   "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
   "repository": "https://github.com/3c1u/classes.git",
   "author": "Hikaru Terazono (3c1u) <3c1u@tohkani.com>",
   "license": "MIT",
