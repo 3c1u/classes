@@ -22,6 +22,10 @@
   },
   "files": [
     "dist/index.js",
+    "dist/index.d.ts",
+    "dist/index.d.ts.map",
+    "dist/index.js.map",
+    "dist/index.js",
     "LICENSE"
   ],
   "devDependencies": {
