@@ -1,4 +1,4 @@
-import { classes } from '../src'
+import { classes, createClasses } from '../src'
 
 describe('classes', () => {
   it('sanitizes whitespace', () => {
@@ -24,5 +24,10 @@ describe('classes', () => {
         'true\nyes': 1 < 2,
       }}`,
     ).toBe('a true yes')
+  })
+
+  it('works with the custom merger', () => {
+    const myClasses = createClasses((...args) => args.join(' foobar '))
+    expect(myClasses`a ${'b'}`).toBe('a foobar b')
   })
 })

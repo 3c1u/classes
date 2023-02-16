@@ -3,10 +3,14 @@ type _ClassType =
   | _ConditionalClassItem
   | _ConditionalClassItem[]
   | Record<string, boolean>
+type _Merger = (...args: string[]) => string
 
 const cleanup = (s: string) => s.replace(/\s+/gm, ' ').trim()
 
-const processClassType = (ty: _ClassType): string => {
+const processClassType = (
+  ty: _ClassType,
+  merger: _Merger = defaultMerger,
+): string => {
   if (!ty) {
     return ''
   }
@@ -14,37 +18,40 @@ const processClassType = (ty: _ClassType): string => {
   if (typeof ty === 'string') {
     return cleanup(ty)
   } else if (Array.isArray(ty)) {
-    return (ty.filter(Boolean) as string[]).map(cleanup).join(' ')
+    return merger(...(ty.filter(Boolean) as string[]).map(cleanup))
   }
 
-  return Object.entries(ty)
-    .flatMap(([k, v]) => (v ? [cleanup(k)] : []))
-    .join(' ')
+  return merger(
+    ...Object.entries(ty).flatMap(([k, v]) => (v ? [cleanup(k)] : [])),
+  )
 }
 
-export const classes = (
-  str: TemplateStringsArray,
-  ...keys: _ClassType[]
-): string => {
-  let res = [] as string[]
+const defaultMerger = (...args: string[]) => args.join(' ')
 
-  str.forEach((s, i) => {
-    const tr = cleanup(s)
-    if (tr !== '') {
-      res.push(tr)
-    }
+export const createClasses = (merger: _Merger = defaultMerger) => {
+  return (str: TemplateStringsArray, ...keys: _ClassType[]): string => {
+    let res = [] as string[]
 
-    if (keys.length <= i) {
-      return
-    }
+    str.forEach((s, i) => {
+      const tr = cleanup(s)
+      if (tr !== '') {
+        res.push(tr)
+      }
 
-    const key = processClassType(keys[i])
-    if (key !== '') {
-      res.push(key)
-    }
-  })
+      if (keys.length <= i) {
+        return
+      }
 
-  return res.join(' ')
+      const key = processClassType(keys[i], merger)
+      if (key !== '') {
+        res.push(key)
+      }
+    })
+
+    return merger(...res)
+  }
 }
+
+export const classes = createClasses()
 
 export default classes
