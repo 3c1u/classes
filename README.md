@@ -21,3 +21,11 @@ const className = classes`
   }}
 `
 ```
+
+```ts
+import { twMerge } from 'tailwind-merge'
+
+const tw = createClasses(twMerge)
+
+const className = tw`bg-blue-500 bg-blue-600`
+```
