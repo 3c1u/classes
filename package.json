@@ -8,11 +8,12 @@
   "author": "Hikaru Terazono (3c1u) <3c1u@tohkani.com>",
   "license": "MIT",
   "private": false,
+  "packageManager": "pnpm@7.27.1",
   "scripts": {
     "build": "tsc",
     "watch": "tsc --watch",
     "test": "jest",
-    "prepack": "yarn build"
+    "prepack": "pnpm build"
   },
   "publishConfig": {
     "registry": "https://registry.yarnpkg.com"
