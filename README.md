@@ -29,3 +29,25 @@ const tw = createClasses(twMerge)
 
 const className = tw`bg-blue-500 bg-blue-600`
 ```
+
+## Usage with Tailwind CSS + Visual Studio Code
+
+To get autocomplete working with Tailwind CSS, install the [Tailwind CSS IntelliSense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss) extension. Then, add the following to your `settings.json`:
+
+```json
+  "tailwindCSS.experimental.classRegex": [
+    ["tw`([^`]*)`", "[`'\"`]([^'\"`,;]*)[`'\"`]"],
+    // ...
+  ],
+```
+
+## Similar Projects
+
+### [clsx](https://github.com/lukeed/clsx)
+
+Classname utility for conditionally joining classNames together. It uses function arguments instead of template literals.
+
+## License
+
+Licensed under the MIT license.
+See [LICENSE](./LICENSE) for more information.
