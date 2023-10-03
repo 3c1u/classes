@@ -34,7 +34,7 @@ const className = tw`bg-blue-500 bg-blue-600`
 
 To get autocomplete working with Tailwind CSS, install the [Tailwind CSS IntelliSense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss) extension. Then, add the following to your `settings.json`:
 
-```json
+```jsonc
   "tailwindCSS.experimental.classRegex": [
     ["tw`([^`]*)`", "[`'\"`]([^'\"`,;]*)[`'\"`]"],
     // ...
